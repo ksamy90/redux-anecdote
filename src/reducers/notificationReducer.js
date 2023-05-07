@@ -9,8 +9,11 @@ const messageNote = createSlice({
     showNote(_state, action) {
       return action.payload;
     },
+    clearNote(_state, action) {
+      return action.payload;
+    },
   },
 });
 
-export const { showNote } = messageNote.actions;
+export const { showNote, clearNote } = messageNote.actions;
 export default messageNote.reducer;

@@ -1,20 +1,11 @@
-import { useSelector, useDispatch } from "react-redux";
-import { showNote } from "../reducers/notificationReducer";
+import { useSelector } from "react-redux";
 
 const Notification = () => {
   const notification = useSelector((state) => state.notify);
-  const votes = useSelector((state) => state.notes);
-  const dispatch = useDispatch();
-  const itemVotes = votes.map((vote) => {
-    return vote.content;
-  });
-  console.log(itemVotes);
-  // setTimeout(() => {
-  //   dispatch(showNote(itemVotes[0]));
-  // }, 5000);
 
   const style = {
     border: "solid",
+    borderColor: "green",
     padding: 10,
     borderWidth: 1,
     marginBottom: 15,
