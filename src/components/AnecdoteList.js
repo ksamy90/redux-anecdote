@@ -21,10 +21,10 @@ const AnecdoteList = () => {
           const handleVotes = () => {
             dispatch(vote(anecdote.id));
             dispatch(showNote(anecdote.content));
+            setTimeout(() => {
+              dispatch(clearNote(""));
+            }, 8000);
           };
-          setTimeout(() => {
-            dispatch(clearNote(""));
-          }, 8000);
           return (
             <div key={anecdote.id}>
               <div>{anecdote.content}</div>
