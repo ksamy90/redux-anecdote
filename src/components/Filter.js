@@ -6,8 +6,9 @@ const Filter = () => {
   const handleChange = (evt) => {
     dispatch(filterChange(evt.target.value));
   };
+  const style = { marginBottom: 15 };
   return (
-    <div>
+    <div style={style}>
       filter <input type="text" name="filter" onChange={handleChange} />
     </div>
   );
