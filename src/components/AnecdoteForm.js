@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { newNote } from "../reducers/anecdoteReducer";
-import { showNote } from "../reducers/notificationReducer";
+import { showNote, clearNote } from "../reducers/notificationReducer";
 import anecdotes from "../services/anecdotes";
 
 const AnecdoteForm = () => {
@@ -13,6 +13,9 @@ const AnecdoteForm = () => {
     const newDote = await anecdotes.createNew(content);
     dispatch(newNote(newDote));
     dispatch(showNote(newDote.content));
+    setTimeout(() => {
+      dispatch(clearNote(""));
+    }, 4000);
   };
 
   return (
