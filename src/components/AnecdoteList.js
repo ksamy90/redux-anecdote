@@ -28,7 +28,7 @@ const AnecdoteList = () => {
             // setTimeout(() => {
             //   dispatch(clearNote(""));
             // }, 8000);
-            dispatch(showNotifications(anecdote.content));
+            dispatch(showNotifications(anecdote.content, 5000));
           };
           return (
             <div key={anecdote.id}>
