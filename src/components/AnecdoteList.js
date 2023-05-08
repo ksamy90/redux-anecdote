@@ -1,6 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { voteNote } from "../reducers/anecdoteReducer";
-import { clearNote, showNote } from "../reducers/notificationReducer";
+import {
+  clearNote,
+  showNote,
+  showNotifications,
+} from "../reducers/notificationReducer";
 import Filter from "./Filter";
 import Notification from "./Notification";
 
@@ -20,10 +24,11 @@ const AnecdoteList = () => {
         .map((anecdote) => {
           const handleVotes = async () => {
             dispatch(voteNote(anecdote.id));
-            dispatch(showNote(anecdote.content));
-            setTimeout(() => {
-              dispatch(clearNote(""));
-            }, 8000);
+            // dispatch(showNote(anecdote.content));
+            // setTimeout(() => {
+            //   dispatch(clearNote(""));
+            // }, 8000);
+            dispatch(showNotifications(anecdote.content));
           };
           return (
             <div key={anecdote.id}>
