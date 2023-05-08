@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import anecdoteService from "../services/anecdotes";
 
 const initialState = [];
 
@@ -25,4 +26,26 @@ const doteSlice = createSlice({
   },
 });
 export const { vote, newNote, setNotes } = doteSlice.actions;
+
+export const initializeNotes = () => {
+  return async (dispatch) => {
+    const notes = await anecdoteService.getAll();
+    dispatch(setNotes(notes));
+  };
+};
+
+export const createDote = (content) => {
+  return async (dispatch) => {
+    const note = await anecdoteService.createNew(content);
+    dispatch(newNote(note));
+  };
+};
+
+export const voteNote = (id) => {
+  return async (dispatch) => {
+    const note = await anecdoteService.editNote(id);
+    dispatch(vote(note.id));
+  };
+};
+
 export default doteSlice.reducer;
