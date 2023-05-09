@@ -1,10 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { voteNote } from "../reducers/anecdoteReducer";
-import {
-  clearNote,
-  showNote,
-  showNotifications,
-} from "../reducers/notificationReducer";
+import { showNotifications } from "../reducers/notificationReducer";
 import Filter from "./Filter";
 import Notification from "./Notification";
 
