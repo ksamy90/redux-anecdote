@@ -1,30 +1,33 @@
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { voteNote } from "../reducers/anecdoteReducer";
 import { showNotifications } from "../reducers/notificationReducer";
 import Filter from "./Filter";
 import Notification from "./Notification";
 
-const AnecdoteList = () => {
-  const anecdotes = useSelector((state) => state.notes);
-  const filterNotes = useSelector((state) => state.filter);
-  const dispatch = useDispatch();
+const AnecdoteList = (props) => {
+  // const anecdotes = useSelector((state) => state.notes);
+  // const filterNotes = useSelector((state) => state.filter);
+  // const dispatch = useDispatch();
 
   return (
     <div>
       <h2>Anecdotes</h2>
       <Notification />
       <Filter />
-      {anecdotes
-        .filter((note) => note.content.includes(filterNotes))
+      {props.anecdotes
+        .filter((note) => note.content.includes(props.filterNotes))
         .sort((a, b) => b.votes - a.votes)
         .map((anecdote) => {
           const handleVotes = async () => {
-            dispatch(voteNote(anecdote.id));
+            // dispatch(voteNote(anecdote.id));
+            props.voteNote(anecdote.id);
             // dispatch(showNote(anecdote.content));
             // setTimeout(() => {
             //   dispatch(clearNote(""));
             // }, 8000);
-            dispatch(showNotifications(anecdote.content, 5000));
+            // dispatch(showNotifications(anecdote.content, 5000));
+            props.showNotifications(anecdote.content);
           };
           return (
             <div key={anecdote.id}>
@@ -40,4 +43,23 @@ const AnecdoteList = () => {
   );
 };
 
-export default AnecdoteList;
+const mapStateToProps = (state) => {
+  return {
+    anecdotes: state.notes,
+    filterNotes: state.filter,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    voteNote: (id) => dispatch(voteNote(id)),
+    showNotifications: (data) => dispatch(showNotifications(data, 5000)),
+  };
+};
+
+const ConnectedList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AnecdoteList);
+
+export default ConnectedList;

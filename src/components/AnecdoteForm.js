@@ -1,18 +1,22 @@
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { createDote } from "../reducers/anecdoteReducer";
 import { showNote, clearNote } from "../reducers/notificationReducer";
 
-const AnecdoteForm = () => {
-  const dispatch = useDispatch();
+const AnecdoteForm = ({ createDote, showNote, clearNote }) => {
+  // const dispatch = useDispatch();
 
   const addNote = async (evt) => {
     evt.preventDefault();
     const content = evt.target.note.value;
     evt.target.note.value = "";
-    dispatch(createDote(content));
-    dispatch(showNote(content));
+    // dispatch(createDote(content));
+    // dispatch(showNote(content));
+    createDote(content);
+    showNote(content);
     setTimeout(() => {
-      dispatch(clearNote(""));
+      // dispatch(clearNote(""));
+      clearNote("");
     }, 4000);
   };
 
@@ -29,4 +33,13 @@ const AnecdoteForm = () => {
   );
 };
 
-export default AnecdoteForm;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createDote: (data) => dispatch(createDote(data)),
+    showNote: (data) => dispatch(showNote(data)),
+    clearNote: (data) => dispatch(clearNote(data)),
+  };
+};
+
+const ConnectedForm = connect(null, mapDispatchToProps)(AnecdoteForm);
+export default ConnectedForm;
