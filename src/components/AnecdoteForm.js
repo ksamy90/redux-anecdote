@@ -17,7 +17,7 @@ const AnecdoteForm = ({ createDote, showNote, clearNote }) => {
     setTimeout(() => {
       // dispatch(clearNote(""));
       clearNote("");
-    }, 4000);
+    }, 3000);
   };
 
   return (
