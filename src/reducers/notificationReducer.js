@@ -15,7 +15,7 @@ const messageNote = createSlice({
   },
 });
 
-export let timer1;
+export let timer;
 export let runTimer;
 
 export const { showNote, clearNote } = messageNote.actions;
@@ -23,7 +23,7 @@ export const showNotifications = (notify) => {
   return (dispatch) => {
     dispatch(showNote(notify));
     runTimer = () => {
-      timer1 = window.setTimeout(() => {
+      timer = window.setTimeout(() => {
         dispatch(clearNote(""));
       }, 5000);
     };

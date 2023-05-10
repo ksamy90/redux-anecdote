@@ -4,7 +4,7 @@ import { voteNote } from "../reducers/anecdoteReducer";
 import {
   runTimer,
   showNotifications,
-  timer1,
+  timer,
 } from "../reducers/notificationReducer";
 import Filter from "./Filter";
 import Notification from "./Notification";
@@ -31,9 +31,9 @@ const AnecdoteList = (props) => {
             //   dispatch(clearNote(""));
             // }, 8000);
             // dispatch(showNotifications(anecdote.content, 5000));
-            window.clearTimeout(timer1);
+            window.clearTimeout(timer);
             props.showNotifications(anecdote.content);
-            window.clearTimeout(timer1);
+            window.clearTimeout(timer);
             runTimer();
           };
           return (
