@@ -31,12 +31,10 @@ const AnecdoteList = (props) => {
             //   dispatch(clearNote(""));
             // }, 8000);
             // dispatch(showNotifications(anecdote.content, 5000));
-            props.showNotifications(anecdote.content);
-            console.log(timer1);
             window.clearTimeout(timer1);
-            setTimeout(() => {
-              runTimer();
-            }, 4000);
+            props.showNotifications(anecdote.content);
+            window.clearTimeout(timer1);
+            runTimer();
           };
           return (
             <div key={anecdote.id}>

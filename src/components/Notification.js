@@ -17,7 +17,8 @@ const Notification = ({ notification }) => {
   return <div></div>;
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  console.log(state);
   return {
     notification: state.notify,
   };
